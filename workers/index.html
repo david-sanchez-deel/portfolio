@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Front Workers</title>
+  </head>
+  <body>
+    How to handle multiple threads with js in browser.
+    <a href="node/readme.md">Node version</a>
+    <p></p>
+    <button class="option" onclick="withoutReduce()">Without workers</button>
+    <button class="option" onclick="mapReduce(1)">1 worker</button>
+    <button class="option" onclick="mapReduce(2)">2 workers</button>
+    <button class="option" onclick="mapReduce(5)">5 workers</button>
+    <button class="option" onclick="mapReduce(10)">10 workers</button>
+    <button class="option" onclick="mapReduce(20)">20 workers</button>
+    <div id="result"></div>
+
+    <script>
+      /**
+      Part of this code was taken from https://github.com/seagomezar/MapReducePerformanceExperiment
+      **/
+      let data = [];
+      function putMessage(text) {
+        document.getElementById('result').innerHTML += text + '<br>';
+      }
+      function loadData() {
+        data = [];
+        return fetch("https://data.cityofnewyork.us/api/views/25th-nujf/rows.json")
+          .then(response => response.json())
+          .then(response => response.data)
+          .then(responseJSON => {
+            for (let index = 0; index < 5; index ++) {
+              data.push(...responseJSON);
+            }
+            putMessage('Data was loaded');
+          })
+          .catch(() => putMessage('Data can not be loaded, please check your connection'));
+      }
+
+      async function withoutReduce() {
+        await loadData();
+        const start = Date.now();
+        let counter = data.reduce((previous, element) => (/[mM]/.test(element[11])) ? previous + 1 : previous, 0);
+        putMessage('Work finished with ' + counter + ' as result. In ' + (Date.now() - start) + ' ms');
+      }
+
+      async function mapReduce(nodesToCreate) {
+        await loadData();
+        const nodes = [];
+        const dataChunks = []
+        const originalCount = data.length
+        for (let index = 0; index < nodesToCreate; index ++) {
+          nodes.push(new Worker("helper.js"));
+          dataChunks.push(data.splice(0, Math.floor(originalCount / nodesToCreate)));
+        }
+        const start = Date.now();
+        for (let index = 0; index < nodesToCreate; index ++) {
+          nodes[index].addEventListener(
+            'message',
+            (e) => reducer("M", e.data), false
+          );
+          nodes[index].postMessage(dataChunks[index]);
+        }
+        const result = {};
+        let nodeCounter = 0;
+        function reducer(key, value) {
+          if (result[key]) {
+            result[key] = value + result[key];
+          } else {
+            result[key] = value;
+          }
+          nodeCounter++;
+          if (nodeCounter == nodesToCreate) {
+            putMessage('Work finished with ' + result['M'] + ' as result. In ' + (Date.now() - start) + ' ms');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
