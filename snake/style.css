@@ -1,0 +1,17 @@
+div[is=app-stage] {
+  width: 400px;
+  height: 400px;
+  background-color: black;
+}
+app-wall {
+  background-color: black;
+}
+body {
+  margin: 0;
+}
+app-snake {
+  position: absolute;
+}
+app-snake-body {
+  background-color: orange;
+}
