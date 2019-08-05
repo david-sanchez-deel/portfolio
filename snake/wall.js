@@ -7,6 +7,7 @@ export default class Wall extends Square {
     this.style.width = `${this.width - 2}px`;
     this.style.height = `${this.height - 2}px`;
     this.style.border = '1px black solid';
+    this.style.zIndex = 10;
   }
 }
 

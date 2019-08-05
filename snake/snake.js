@@ -1,20 +1,21 @@
 import SnakeBody from "./snake-body.js";
 import constants from "./constants.js";
+import Fruit from "./fruit.js";
+import Wall from "./wall.js";
 
 export default class Snake extends HTMLElement {
   constructor(x, y, parent) {
     super();
     this.setPosition(x, y);
     this.parent = parent;
-    this.shadow = this.attachShadow({mode: 'open'});
+    this.score = 0;
     const style = document.createElement('link');
     style.setAttribute('href', './snake-body.css');
     style.setAttribute('rel', 'stylesheet');
     style.setAttribute('type', 'text/css');
-    this.shadow.appendChild(style);
 
-    const head = new SnakeBody(0, 0, this.parent, 1);
-    this.shadow.appendChild(head);
+    this.head = new SnakeBody(this.x, this.y, this, 1);
+    constants.stage.instance.appendChild(this.head);
     this.configure();
   }
 
@@ -37,6 +38,8 @@ export default class Snake extends HTMLElement {
   }
 
   setPosition(x, y) {
+    this.oldX = this.x;
+    this.oldY = this.y;
     this.x = x;
     this.y = y;
     Object.assign(
@@ -49,6 +52,7 @@ export default class Snake extends HTMLElement {
   }
 
   update() {
+    // Movement
     if (this.direction === 'left') {
       this.setPosition(this.x - constants.stage.squareHeight, this.y);
     } else if (this.direction === 'right') {
@@ -58,6 +62,27 @@ export default class Snake extends HTMLElement {
     } else if (this.direction === 'down') {
       this.setPosition(this.x, this.y + constants.stage.squareWidth);
     }
+    this.head.update();
+    // Eat fruit
+    const element = document.elementFromPoint(this.x, this.y);
+    if (element instanceof Fruit) {
+      this.increaseSize(element);
+    }
+    // Wall
+    if (element instanceof Wall) {
+      this.die();
+    }
+  }
+
+  die() {
+    alert('YOU DIED!, SCORE: ' + this.score);
+    location.reload();
+  }
+
+  increaseSize(fruit) {
+    this.parent.removeChild(fruit);
+    this.score += 1;
+    this.head.increaseSize();
   }
 }
 customElements.define('app-snake', Snake);

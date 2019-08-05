@@ -13,6 +13,7 @@ export default class Stage extends HTMLDivElement {
         height: `${constants.stage.height}px`,
         'background-color': "#eee",
       });
+    constants.stage.instance = this;
     this.configure();
   }
 
