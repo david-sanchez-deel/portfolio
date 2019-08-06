@@ -2,10 +2,11 @@
 
 const constants = {
   stage: {
-    width: 400,
-    height: 400,
-    columns: 10,
-    rows: 10,
+    instance: null,
+    width: 800,
+    height: 800,
+    columns: 40,
+    rows: 40,
     squareWidth: 0,
     squareHeight: 0,
   },

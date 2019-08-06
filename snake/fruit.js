@@ -4,6 +4,7 @@ import constants from "./constants.js";
 export default class Fruit extends Square {
   constructor(parent) {
     super(0, 0, parent);
+    this.style.zIndex = 10;
   }
 
   connectedCallback() {

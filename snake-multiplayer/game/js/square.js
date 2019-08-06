@@ -4,8 +4,8 @@ export default class Square extends HTMLElement {
   constructor(x, y, parent) {
     super();
     this.setPosition(x, y);
-    this.width = constants.stage.squareWidth;
-    this.height = constants.stage.squareHeight;
+    this.width = constants.stage.squareSize;
+    this.height = constants.stage.squareSize;
     this.parent = parent;
     Object.assign(
       this.style,
