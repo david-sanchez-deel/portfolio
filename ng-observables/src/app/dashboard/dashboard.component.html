@@ -1,0 +1,56 @@
+<!-- Header @TODO Move to a single component -->
+<mat-toolbar class="topbar telative mat-toolbar mat-primary mat-toolbar-single-row" color="primary"
+  style="flex-direction: row; box-sizing: border-box; display: flex;">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">
+      <i class="material-icons mat-primary">drive_eta</i>
+    </a>
+  </div>
+</mat-toolbar>
+<!-- Sidebar @TODO Move to a single component -->
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+    <div class="mat-drawer-inner-container">
+      <mat-nav-list class="mat-nav-list mat-list-base" role="navigation">
+        <mat-list-item class="mat-list-item" routerLinkActive="active">
+          <div class="mat-list-item-content">
+            <a routerLink="/" style="display: flex;">
+              <span>Home</span>
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="mat-list-item" routerLinkActive="active">
+          <div class="mat-list-item-content">
+            <a routerLink="/messages" style="display: flex;">
+              <span>Messages</span>
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="mat-list-item" routerLinkActive="active">
+          <div class="mat-list-item-content">
+            <a routerLink="/wishlist" style="display: flex;">
+              <span>Wishlist</span>
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="mat-list-item" routerLinkActive="active">
+          <div class="mat-list-item-content">
+            <a routerLink="/settings" style="display: flex;">
+              <span>Settings</span>
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="mat-list-item" routerLinkActive="active">
+          <div class="mat-list-item-content">
+            <a routerLink="/profile" style="display: flex;">
+              <span>My Account</span>
+            </a>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
