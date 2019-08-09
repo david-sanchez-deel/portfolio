@@ -39,6 +39,7 @@ export default class Stage extends HTMLDivElement {
   }
 
   fruit(position, id) {
+    console.log('Fruit ate by', id, 'new will be in', position)
     if (id) {
       this.dummies[id].increaseSize();
     }
@@ -50,14 +51,12 @@ export default class Stage extends HTMLDivElement {
   }
 
   update(data) {
-    for (const player of Object.values(data)) {
-      if (!player.position) {
-        continue;
-      }
+    for (const player of data) {
       this.moveDummy(player.position, player.id);
     }
     for (let dummy of Object.keys(this.dummies)) {
-      if (!(dummy in data)) {
+      if (!data.find(e => e.id === dummy)) {
+        console.log('Remove player')
         this.removeChild(this.dummies[dummy]);
         delete this.dummies[dummy];
       }
@@ -66,6 +65,7 @@ export default class Stage extends HTMLDivElement {
 
   moveDummy(position, id) {
     if (!(id in this.dummies)) {
+      console.log('Add player')
       this.dummies[id] = new Snake(...position, this, id === window.snake.server.id);
       this.appendChild(this.dummies[id]);
     } else {

@@ -1,37 +1,20 @@
 import constants from "./constants.js";
 import Stage from "./stage.js";
-var server = io.connect("http://jsancheze:8000");
-console.log(server.id);
-window.snake = {
-  connect: function() {
-    const room = document.getElementById("roomName").value;
-    if (room) {
-      server.emit("connect-to-room", { room });
-    }
-  },
-  start: function() {
-    server.emit("start-room");
-  },
-  server
-};
+var server = io.connect("http://127.0.0.1:8000");
+server.emit("connect-to-room", { username: Date.now() });
+window.snake = { server };
 let stage;
 // Show connection information
-server.on("connect-to-room", function() {
-  document.getElementById("connecting").style.display = "none";
-  document.getElementById("connectionInformation").style.display = "block";
-});
 server.on("new-member", data => {
+  console.log('new-member');
   document.getElementById("participants").innerHTML =
     "There are " + data + " in the room";
 });
-server.on("owner", () => {
-  document.getElementById("owner").style.display = "block";
-});
 server.on("start", ({ size, columns, squareSize }) => {
+  console.log('start');
   constants.stage.size = size;
   constants.stage.columns = columns;
   constants.stage.squareSize = squareSize;
-  document.getElementById("connectionInformation").style.display = "none";
   document.createElement('app-stage');
   stage = new Stage();
   document.getElementById('game').appendChild(stage);
@@ -53,13 +36,12 @@ server.on("start", ({ size, columns, squareSize }) => {
   });
 });
 server.on("tick", data => {
-  stage.update(data, server.id);
-});
-server.on("member-removed", data => {
-  console.log("member-removed", data);
+  if (stage) {
+    stage.update(data, server.id);
+  }
 });
 server.on("winner", ({ winner, score, data}) => {
-  console.log(winner, score, data);
+  console.log('Winner', winner, score, data);
   if (winner === server.id) {
     alert('Congratulation!, You are the winner. Your score: ' + score);
   } else {
