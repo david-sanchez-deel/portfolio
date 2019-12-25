@@ -3,9 +3,13 @@ const size = 600;
 /** How many blocks will be allowed */
 const columns = 40;
 const squareSize = size/columns;
-
+const Logger = require('./logger');
+const logger = new Logger('Room');
+let roomId = 1;
 class Room {
   constructor(server) {
+    this.id = roomId ++;
+    logger.log(`Room ${this.id} created`);
     this.players = {}
     this.status = 'open';
     this.scores = {};
@@ -19,27 +23,29 @@ class Room {
 
   addPlayer(client, username) {
     if (client.inGame) {
-      console.log('Client in game rejected');
+      client.socket.join(client.room);
+      logger.log('Client reconnected but is in a game. Joined again to the room');
       return true;
     }
     if (this.status !== 'open') {
-      console.log('Room is not opened');
+      logger.log('Room is not opened');
       return false;
     }
     if (Object.keys(this.players) < 4) {
       client.inGame = true;
+      client.room = this.id;
       client.username = username;
       client.position = this.getPositionOfPlayer(Object.keys(this.players).length),
         this.players[client.socket.id] = client;
       client.socket.join(this.id, this.playerJoined.bind(this, client));
       return true;
     }
-    console.log('Client in game rejected');
+    logger.log('Client rejected due unknown reason');
     return false;
   }
 
   playerJoined(client) {
-    console.log('Room', this.id, 'Client', client.socket.id, 'connected');
+    logger.log(`Client ${client.id} joined to room ${this.id}`);
     this.io.emit('new-member', Object.keys(this.players).length);
     client.socket.on('die', this.killPlayer.bind(this, client));
     client.socket.on('disconnect', this.killPlayer.bind(this, client));

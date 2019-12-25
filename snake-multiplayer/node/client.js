@@ -1,8 +1,11 @@
+let clientId = 0;
+
 class Client {
   constructor(socket, server) {
     this.socket = socket;
     this.server = server;
     this.score = 0;
+    this.id = clientId ++;
     this.position = null;
     this.username = null;
     this.inGame = false;

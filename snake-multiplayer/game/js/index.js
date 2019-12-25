@@ -1,6 +1,6 @@
 import constants from "./constants.js";
 import Stage from "./stage.js";
-var server = io.connect("http://192.168.1.15:8000");
+var server = io.connect("http://127.0.0.1:8000");
 server.emit("connect-to-room", { username: Date.now() });
 window.snake = { server };
 let stage;

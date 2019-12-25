@@ -8,24 +8,31 @@
  */
 const Client = require('./client');
 const Room = require('./room');
+const Logger = require('./logger');
+const logger = new Logger('Server');
+
 class Server {
   constructor() {
     this.server = require('http').createServer();
     this.io = require('socket.io')(this.server);
     this.io.on('connection', this.handleConnection.bind(this));
-    this.server.listen(process.env.PORT || 8000);
+    const port = process.env.PORT || 8000;
+    this.server.listen(port);
+    logger.log('Listening in ' + port);
   }
+
 
   handleConnection(client) {
     const clientWrapper = new Client(client, this);
+    logger.log('Client connected', { id: clientWrapper.id });
     client.on('connect-to-room', this.joinClientToRoom.bind(this, clientWrapper));
   }
 
-  joinClientToRoom(client, username) {
+  joinClientToRoom(client, data) {
     if (!this.lastRoom) {
       this.lastRoom = new Room(this);
     }
-    while(!this.lastRoom.addPlayer(client, username)) {
+    while(!this.lastRoom.addPlayer(client, data.username)) {
       this.lastRoom.start();
       this.lastRoom = new Room(this);
     }
