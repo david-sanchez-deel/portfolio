@@ -3,7 +3,7 @@
 const constants = {
   stage: {
     instance: null,
-    size: 0,
+    size: Math.min(window.innerWidth, window.innerHeight),
     columns: 0,
     squareSize: 0,
   },

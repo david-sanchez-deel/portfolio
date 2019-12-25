@@ -13,18 +13,29 @@ const logger = new Logger('Server');
 
 class Server {
   constructor() {
-    this.server = require('http').createServer();
+    this.server = require('http').createServer((req, res) => {
+      // Set CORS headers
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Request-Method', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+      res.setHeader('Access-Control-Allow-Headers', '*');
+      if ( req.method === 'OPTIONS' ) {
+        res.writeHead(200);
+        res.end();
+        return;
+      }
+    });
     this.io = require('socket.io')(this.server);
     this.io.on('connection', this.handleConnection.bind(this));
     const port = process.env.PORT || 8000;
     this.server.listen(port);
-    logger.log('Listening in ' + port);
+    logger.log(`Sever listening in ${port}`);
   }
 
 
   handleConnection(client) {
     const clientWrapper = new Client(client, this);
-    logger.log('Client connected', { id: clientWrapper.id });
+    client.emit('configuration', clientWrapper.id);
     client.on('connect-to-room', this.joinClientToRoom.bind(this, clientWrapper));
   }
 

@@ -12,7 +12,7 @@ export default class Stage extends HTMLDivElement {
         width: `${constants.stage.size}px`,
         height: `${constants.stage.size}px`,
         'background-color': "#eee",
-        position: 'absolute',
+        position: 'fixed',
 
       });
     constants.stage.instance = this;
@@ -21,21 +21,18 @@ export default class Stage extends HTMLDivElement {
   }
 
   configure() {
-    const squareSize = constants.stage.squareSize;
     for (let column = 0; column < constants.stage.columns ; column += 1) {
-      this.appendChild(new Wall(column * squareSize, 0, this));
+      this.appendChild(new Wall(column, 0, this));
       this.appendChild(new Wall(
-        column * squareSize,
-        constants.stage.size - squareSize, this));
+        column,
+        constants.stage.columns - 1, this));
     }
 
     for (let row = 1; row < constants.stage.columns - 1; row += 1) {
-      this.appendChild(new Wall(0, row * squareSize, this));
+      this.appendChild(new Wall(0, row, this));
       this.appendChild(new Wall(
-        constants.stage.size - squareSize, row * squareSize, this));
+        constants.stage.columns - 1, row, this));
     }
-    /*
-     */
   }
 
   fruit(position, id) {
@@ -52,10 +49,10 @@ export default class Stage extends HTMLDivElement {
 
   update(data) {
     for (const player of data) {
-      this.moveDummy(player.position, player.id);
+      this.moveDummy(player.position, player.id.toString());
     }
     for (let dummy of Object.keys(this.dummies)) {
-      if (!data.find(e => e.id === dummy)) {
+      if (!data.find(e => e.id.toString() === dummy)) {
         console.log('Remove player')
         this.removeChild(this.dummies[dummy]);
         delete this.dummies[dummy];
@@ -65,11 +62,11 @@ export default class Stage extends HTMLDivElement {
 
   moveDummy(position, id) {
     if (!(id in this.dummies)) {
-      console.log('Add player')
-      this.dummies[id] = new Snake(...position, this, id === window.snake.server.id);
+      this.dummies[id] = new Snake(...position, this, id === window.snake.server.playerId);
+      console.log('Add player', id, this.dummies)
       this.appendChild(this.dummies[id]);
     } else {
-      this.dummies[id].setPosition(...position);
+      this.dummies[id].setPosition(...position.map(e => e*constants.stage.squareSize));
       this.dummies[id].update();
     }
   }

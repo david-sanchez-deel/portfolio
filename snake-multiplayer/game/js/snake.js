@@ -19,7 +19,7 @@ export default class Snake extends Square {
 
   update() {
     if (this.isPlayer && !this.isTail && !window.snake.died) {
-      const element = document.elementFromPoint(this.x + 4, this.y+ 4);
+      const element = document.elementFromPoint((this.x * constants.stage.squareSize) + 4, (this.y * constants.stage.squareSize) + 4);
       if (element instanceof Wall || (element instanceof Snake && !element.isPlayer)) {
         console.log(element, this.x + 4, this.y + 4)
         this.die();

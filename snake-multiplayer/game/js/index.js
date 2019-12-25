@@ -1,36 +1,38 @@
 import constants from "./constants.js";
 import Stage from "./stage.js";
-var server = io.connect("http://127.0.0.1:8000");
+var server = io.connect("http://192.168.1.16:8000");
+
+// @TODO Ask for the username and replace it
 server.emit("connect-to-room", { username: Date.now() });
 window.snake = { server };
 let stage;
 // Show connection information
 server.on("new-member", data => {
-  console.log('new-member');
+  console.log('Room', 'new-member');
   document.getElementById("participants").innerHTML =
     "There are " + data + " in the room";
 });
 server.on("start", ({ size, columns, squareSize }) => {
-  console.log('start');
-  constants.stage.size = size;
+  console.log('Room', 'start');
   constants.stage.columns = columns;
-  constants.stage.squareSize = squareSize;
+  constants.stage.squareSize = constants.stage.size/columns;
   document.createElement('app-stage');
   stage = new Stage();
   document.getElementById('game').appendChild(stage);
   // Move player
-  window.addEventListener('keypress', (ev) => {
-    const key = ev.key.toLowerCase();
-    if (key === 'a') {
+  window.addEventListener('keydown', (ev) => {
+    const key = ev.keyCode;
+    console.log(ev.keyCode);
+    if (key === 37 || key === 65) {
       return server.emit('move', 'left');
     }
-    if (key === 'w') {
+    if (key === 38 || key === 87) {
       return server.emit('move', 'up');
     }
-    if (key === 'd') {
+    if (key === 39 || key === 68) {
       return server.emit('move', 'right');
     }
-    if (key === 's') {
+    if (key === 40 || key === 83) {
       return server.emit('move', 'down');
     }
   });
@@ -49,9 +51,12 @@ server.on("winner", ({ winner, score, data}) => {
   }
   location.reload()
 });
-server.on("fruit", (data, id) => {
+server.on("fruit", (data, id, aux) => {
   stage.fruit(data, id);
 });
 server.on("increaseSize", () => {
   stage.player.increaseSize();
 });
+server.on('configuration', (id) => {
+  server.playerId = id.toString();
+})

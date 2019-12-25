@@ -3,7 +3,7 @@ import constants from "./constants.js";
 export default class Square extends HTMLElement {
   constructor(x, y, parent) {
     super();
-    this.setPosition(x, y);
+    this.setPosition(x*constants.stage.squareSize, y*constants.stage.squareSize);
     this.width = constants.stage.squareSize;
     this.height = constants.stage.squareSize;
     this.parent = parent;
