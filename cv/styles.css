@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  width: 1440px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  -webkit-print-color-adjust: exact;
+}
+/** RESUME - LEFT SIDE **/
+.container-resume {
+  background-color: #414141;
+  color: white;
+  width: 33%;
+  padding-top: 10px;
+}
+.container-resume hr {
+  border-color: white;
+}
+/*  CONTACT ELEMENT */
+.contact-element, .skill-element {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.contact-element-title {
+    font-weight: bolder;
+}
+.contact-element-title, .contact-element-value, .language {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+.contact-element-value a {
+    color: white;
+    text-decoration: none;
+}
+.skill-element span {
+    font-size: 28px;
+}
+.skill-element .bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/** GENERAL **/
+.section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 10%;
+}
+.section-content {
+    text-align: justify;
+    margin-top: 20px;
+}
+.section hr {
+  margin-top: 20px;
+  border-width: 2px;
+}
+.contact-icon {
+  margin-right: 20px;
+  float: left;
+}
+.bar {
+    border: #888988 solid 1px;
+    background-color: #888988;
+    height: 15px;
+    width: 300px;
+    position: relative;
+}
+.bar div {
+    background-color: white;
+    height: 100%;
+}
+.bar .bar-100 {
+    width: 100%;
+}
+.bar-80 {
+    width: 80%;
+}
+.bar-60 {
+    width: 60%;
+}
+/** BODY - RIGHT SIDE **/
+.container-body {
+  width: 66%;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 60px;
+}
+.container-body .section {
+    margin-left: 0;
+}
+.container-body .section hr{
+    margin-top: 0;
+    background-color: black;
+    height: 2px;
+    border-width: 0;
+}
+.experience-element-title {
+  float: left;
+  width: 30%;
+  height: 100%;
+  font-size: 32px;
+}
+.experience-element-value {
+  margin-left: 30%;
+}
+.references {
+  display: flex;
+  justify-content: space-between;
+}
+/** GENERAL APPLICATION **/
+h1 {
+    margin: 0;
+    font-size: 72px;
+}
+h2 {
+    margin: 0;
+    font-size: 60px;
+    font-weight: normal;
+}
+h3 {
+  margin: 0;
+  font-weight: normal;
+}
+h3, .material-icons.md-contact {
+  font-size: 48px;
+}
+.f-small {
+  font-size: 24px;
+}
+.clearfix {
+  overflow: auto;
+}
+.bold {
+  font-weight: bold;
+}
