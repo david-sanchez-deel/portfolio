@@ -7,7 +7,7 @@ window.onload = () => {
       element.innerHTML = data[key];
     }
   }
-
+  // Contact
   let element = document.getElementById('social-media');
   element.innerHTML = '';
   for (const social of data['social-media']) {
@@ -22,7 +22,7 @@ window.onload = () => {
     </div>
     `;
   }
-
+  // Skills
   element = document.getElementById('skills');
   element.innerHTML = '';
   for (const skill of data.skills) {
@@ -33,6 +33,41 @@ window.onload = () => {
         <div style="width: ${skill.value}%"></div>
       </div>
     </div>
+    `;
+  }
+
+  // Languages
+  element = document.getElementById('languages');
+  element.innerHTML = '';
+  for (const language of data.languages) {
+    element.innerHTML = element.innerHTML + `<div class="language">${language}</div>`;
+  }
+
+  // Experience
+  element = document.getElementById('experiences');
+  element.innerHTML = '';
+  for (const experience of data.experiences) {
+    element.innerHTML = element.innerHTML + `
+      <div class="experience-element">
+        <div class="experience-element-title">
+          ${moment(experience.start).format('MM-YYYY')} - Currently<br /><span class="f-small">PSL S.A.</span>
+            </div>
+            <div class="experience-element-value">
+              <p>
+                Expert of virtual assistants using text or voice recognition
+                platforms.
+              </p>
+              <p>
+                Technical lead and architect for massive usage applications in
+                NodeJS.
+              </p>
+              <p>
+                Creation of the initial DevOps stack to CI + CD using cloud
+                providers choose by our clients.
+              </p>
+              <p>Automation tester</p>
+            </div>
+          </div>
     `;
   }
 }

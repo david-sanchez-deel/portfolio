@@ -4,6 +4,33 @@ const data = {
   "contact-location-value": "Medellín, CO",
   "contact-email-title": "Email",
   "contact-email-value": "jdsancheze@outlook.com",
+  "experiences": [
+    {
+      "start": new Date(1, 7, 2017),
+      "company": "PSL S.A.",
+      "description": [
+        "Expert of virtual assistants using text or voice recognition platforms.",
+        "Technical lead and architect for massive usage applications in NodeJS.",
+        "Creation of the initial DevOps stack to CI + CD using cloud providers choose by our clients.",
+        "Automation tester"
+      ]
+    }
+  ],
+  "experience-title": "EXPERIENCE",
+  "languages-title": "Languages",
+  "languages": [
+    "Spanish (Native)",
+    "English (Medium)",
+  ],
+  "locale": "en",
+  "name": "DAVID SÁNCHEZ",
+  "profile-title": "PROFILE",
+  "profile-value": `Information systems engineer, consultant and full stack developer with
+  knowledge in several popular technologies in the industry. Proficient
+  English/Spanish, a developer with the capacity to implement projects
+  in several kinds of technology/methodology in different business
+  areas.`,
+  "role": "CLOUD DEVELOPER",
   "social-media": [
     {
       "title": "GitHub",
