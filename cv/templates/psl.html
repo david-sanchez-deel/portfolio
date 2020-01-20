@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PSL - CV</title>
+    <link rel="stylesheet" href="./psl.css" />
+  </head>
+  <body>
+    <div class="container-header">
+      <!-- Info-->
+      <div class="container-name">
+        <h1 id="role">role</h1>
+        <h2 id="name" class="name">name</h2>
+      </div>
+      <!-- Logo -->
+      <div>
+        <img src="/assets/psl/logo-white.png">
+      </div>
+    </div>
+    <div class="container-content">
+      <!-- Body -->
+      <div class="container-body">
+        <!-- Profile -->
+        <div class="section">
+          <h3>PROFILE PROFILE</h3>
+          <div class="section-content" id="profile-value">
+          </div>
+        </div>
+        <!-- Experience -->
+        <div class="section">
+          <h3>WORK EXPERIENCE</h3>
+          <div class="section-content" id="experiences">
+          </div>
+        </div>
+      </div>
+      <!-- Skills -->
+      <div class="container-skills">
+        <!-- Pro Skills -->
+        <div class="section">
+          <h3>SKILLS & KNOWLEDGE</h3>
+          <div id="skills">
+            <div class="skill-element">
+              <span>TEAM MANAGEMENT</span>
+            </div>
+            <div class="skill-element">
+              <span>AGILE METHODOLOGIES</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Templates -->
+    <template id="experience-template">
+      <div class="experience-element">
+        <div class="company">Company</div>
+        <div class="city">City</div>
+        <div class="role">City</div>
+        <div class="experience-element-value">
+          <div class="date">Date</div>
+          <div class="description">Description</div>
+        </div>
+      </div>
+    </template>
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>

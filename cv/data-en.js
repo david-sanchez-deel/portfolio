@@ -9,8 +9,10 @@ const data = {
     {
       start: new Date(2017, 7),
       company: "PSL S.A.",
+      city: "Medellín",
+      role: "Software Engineer",
       description: [
-        "As a leading PSL developer, i have been creating different applications for different purposes. Playing different roles among the teams.",
+        "As a leading PSL developer, I have been creating different applications for different purposes. Playing different roles among the teams.",
         "<b>2019</b> Team leader of different internal projects to reduce the boilerplate process in the company",
         "Technologies: AWS (ECS, EC2, SM, Amplify), CircleCI, NodeJS, NestJS, React",
         "<b>2019</b> In charge of training, development and verification of engineering practices for a mobile application with react native.",
@@ -21,14 +23,16 @@ const data = {
         "Technologies: Angular 2+, Firebase, Heroku",
         "<b>2017 - 2018</b> Technical Leader, in charge of the architecture, development and CI / CD of a chat-bot for several platforms, including Facebook and WhatsApp. This platform was able to reduce the number of calls to the company's call center and improve the relationship between the company and its customers.",
         "Technologies: NodeJS, Angular 2+, Azure Cloud, VSTS, BotBuilder",
-        "<b>2017 - 2018</b> Creation and development of an internal project called 'Assistant' to automate processes in the company, suck as report employee's time, schedule company's rooms and reports",
-        "Technologies: NodeJS, Angular 2+, CircleCI, Docker, BotBuilder, Azure (BotFramework)",
+        "<b>2017 - 2018</b> Creation and development of an internal project called 'Assistant' to automate processes in the company, such as report employee's time, schedule company's rooms and reports",
+        "Technologies: NodeJS, Angular 2+, CircleCI, Docker, BotBuilder, Azure (BotFramework)"
       ]
     },
     {
       start: new Date(2018, 7),
       end: new Date(2019, 4),
       company: "Freelance - ECommerce",
+      role: "Software Engineer",
+      city: "Bogotá",
       description: [
         "In charge of the requirements definition, design, implementation and deployment of 2 E-commerce applications with Magento 2 ",
         "Technologies: HTML, PHP, Magento 2, JQuery, CS"
@@ -38,6 +42,8 @@ const data = {
       start: new Date(2016, 8),
       end: new Date(2018, 1),
       company: "ActiveONE Solutions",
+      city: "Medellín",
+      role: "Software Engineer",
       description: [
         "Involved in the development of multiple desktop and cloud projects, supporting the company in the conclusion of them, from approaches in security and performance in development to production and audits by different firms.",
         "Through the years I had these responsibilities:",
@@ -59,6 +65,8 @@ const data = {
       start: new Date(2012, 1),
       end: new Date(2013, 8),
       company: "Freelance - App Grades",
+      city: "Cali",
+      role: "Software Engineer",
       description: [
         "I participated in the development of a system to manage the grades, students, and accountability of a cyclic school for Colombia.",
         "Technologies: WPF, .NET, C#, SQL Server"
@@ -69,14 +77,14 @@ const data = {
   "languages-title": "Languages",
   languages: ["Spanish (Native)", "English (Medium)"],
   locale: "en",
-  name: "DAVID SÁNCHEZ",
+  name: "david sánchez",
   "profile-title": "PROFILE",
   "profile-value": `Information systems engineer, consultant and full stack developer with
   knowledge in several popular technologies in the industry. Proficient
   English/Spanish, a developer with the capacity to implement projects
   in several kinds of technology/methodology in different business
   areas.`,
-  role: "CLOUD DEVELOPER",
+  role: "Cloud developer",
   "social-media": [
     {
       title: "GitHub",
@@ -97,19 +105,19 @@ const data = {
   "skills-title": "PRO. SKILLS",
   skills: [
     {
-      title: "TEAM MANAGEMENT",
+      title: "team management",
       value: 100
     },
     {
-      title: "AGILE METHODOLOGIES",
+      title: "agile methodologies",
       value: 80
     },
     {
-      title: "NODE JS / JS",
+      title: "node JS",
       value: 80
     },
     {
-      title: "ANGULAR 2+",
+      title: "angular 2+",
       value: 80
     },
     {
@@ -117,7 +125,7 @@ const data = {
       value: 80
     },
     {
-      title: "REACT",
+      title: "react",
       value: 60
     }
   ]

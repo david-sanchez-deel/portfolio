@@ -36,6 +36,7 @@ body {
 }
 .skill-element span {
     font-size: 28px;
+    text-transform: capitalize;
 }
 .skill-element .bar {
     margin-top: 20px;
@@ -43,6 +44,9 @@ body {
 }
 
 /** GENERAL **/
+#name {
+  text-transform: capitalize;
+}
 .section {
   margin-top: 60px;
   margin-bottom: 60px;
