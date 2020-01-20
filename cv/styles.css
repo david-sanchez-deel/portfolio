@@ -96,14 +96,19 @@ body {
     height: 2px;
     border-width: 0;
 }
+
+.experience-element {
+  text-align: justify;
+  margin-bottom: 40px;
+}
 .experience-element-title {
   float: left;
   width: 30%;
   height: 100%;
-  font-size: 32px;
 }
 .experience-element-value {
   margin-left: 30%;
+  font-size: 20px;
 }
 .references {
   display: flex;
