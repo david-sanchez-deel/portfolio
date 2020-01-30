@@ -36,6 +36,7 @@ body {
 }
 .skill-element span {
     font-size: 28px;
+    text-transform: capitalize;
 }
 .skill-element .bar {
     margin-top: 20px;
@@ -43,6 +44,9 @@ body {
 }
 
 /** GENERAL **/
+#name {
+  text-transform: capitalize;
+}
 .section {
   margin-top: 60px;
   margin-bottom: 60px;
@@ -96,14 +100,19 @@ body {
     height: 2px;
     border-width: 0;
 }
+
+.experience-element {
+  text-align: justify;
+  margin-bottom: 40px;
+}
 .experience-element-title {
   float: left;
   width: 30%;
   height: 100%;
-  font-size: 32px;
 }
 .experience-element-value {
   margin-left: 30%;
+  font-size: 20px;
 }
 .references {
   display: flex;

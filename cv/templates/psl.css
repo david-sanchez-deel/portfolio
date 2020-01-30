@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  width: 1440px;
+  font-family: Arial;
+  font-size: 24px;
+  -webkit-print-color-adjust: exact;
+  color: #595959;
+}
+/* HEADER */
+.container-header {
+  background-color: #47D3FC;
+  color: white;
+  text-transform: capitalize;
+  padding: 120px 100px 100px 100px;
+  display: flex;
+  justify-content: space-between;
+}
+/* CONTENT */
+.container-content {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+/* RIGHT SIDE */
+.container-skills {
+  width: 300px;
+}
+.skill-element span {
+  font-size: 24px;
+  text-transform: capitalize;
+}
+.skill-element {
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+/** LEFT SIDE */
+.experience-element {
+  text-align: justify;
+  margin-bottom: 40px;
+}
+.experience-element .company, .role {
+  font-weight: bold;
+}
+.experience-element-value {
+  margin-top: 20px;
+  font-size: 20px;
+}
+.experience-element-value .description {
+  margin-left: 20px;
+}
+
+/** GENERAL **/
+.section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.section h3 {
+  color: #00C2F3;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  width: 420px;
+}
+.section-content {
+    text-align: justify;
+    margin-top: 20px;
+}
+
+/** GENERAL APPLICATION **/
+h1 {
+  margin: 0;
+  font-size: 72px;
+}
+h2 {
+  margin: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+h3 {
+margin: 0;
+font-weight: normal;
+}
