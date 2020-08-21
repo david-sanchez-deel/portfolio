@@ -1,15 +1,14 @@
 import React from 'react';
-import { Header } from './components/Header';
+import { Header, Projects } from './components';
+import { ProjectProvider } from './contexts';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      <ProjectProvider>
+      <Projects />
+      </ProjectProvider>
     </div>
   );
 }

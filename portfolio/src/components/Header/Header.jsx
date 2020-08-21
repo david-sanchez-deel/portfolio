@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import {HeaderPic} from './HeaderPic';
 import {LinkedInIcon} from './LinkedInIcon';
 
-import GHLogo from '../assets/gh.png'
+import GHLogo from '../../assets/gh.png'
 
-const Container = styled.div`
+const Container = styled.header`
   height: 4rem;
   display:flex;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
@@ -18,6 +18,7 @@ margin-left: 1rem;
   font-size: 2rem;
 `;
 const NameText = styled.div`
+font-size: 1.5rem;
 `;
 const Space = styled.div`
   flex-grow: 1;
