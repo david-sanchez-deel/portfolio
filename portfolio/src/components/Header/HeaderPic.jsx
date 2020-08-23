@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Image = styled.img`
-  height: 3rem;
+  height: 1.5rem;
   border-radius: 1rem;
 `;
 

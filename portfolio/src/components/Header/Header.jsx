@@ -6,25 +6,27 @@ import {LinkedInIcon} from './LinkedInIcon';
 import GHLogo from '../../assets/gh.png'
 
 const Container = styled.header`
-  height: 4rem;
+  height: 3rem;
   display:flex;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   padding-left: 1rem;
   padding-right: 1rem;
   align-items: center;
+  background-color: white;
 `;
+
 const HeaderText = styled.div`
-margin-left: 1rem;
-  font-size: 2rem;
+  margin-left: 1rem;
 `;
-const NameText = styled.div`
-font-size: 1.5rem;
-`;
+
+const NameText = styled.div``;
+
 const Space = styled.div`
   flex-grow: 1;
 `;
+
 const IconContainer = styled.div`
-margin-left: 1rem;
+  margin-left: 1rem;
 `;
 
 export const Header = () => {
