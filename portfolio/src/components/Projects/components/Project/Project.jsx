@@ -23,6 +23,7 @@ const Name = styled.p`
   margin-top: 1em;
   font-weight: bold;
 `;
+
 const Description = styled.div`
   opacity: 0;
   transition: all 0.3s ease;
@@ -40,7 +41,7 @@ const Category = styled.div`
 `;
 export const Project = (project) => () => {
   return (
-    <Container className="project-container" theme={project}>
+    <Container target="_blank" href={project.link} className="project-container" theme={project}>
       <Overlay className="overlay" theme={project}></Overlay>
       <Circle className="circle" theme={project}>{project.icon}</Circle>
       <Name>{project.name}</Name>

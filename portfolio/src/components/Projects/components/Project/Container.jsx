@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.a`
 width: 220px;
 height: 321px;
 background: #fff;
