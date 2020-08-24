@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <style>
+    .board {
+      border-radius: 2rem;
+      width: 16rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      background-color: #dfefff;
+    }
+    .cell {
+      width: 3rem;
+      height: 3rem;
+      margin: 0.5rem;
+      border-radius: 2em;
+    }
+
+    .cell-hole {
+      background-color: #43496d;
+      -moz-box-shadow:    inset 0 0 10px #dfefff;
+      -webkit-box-shadow: inset 0 0 10px #dfefff;
+      box-shadow:         inset 0 0 10px #dfefff;
+    }
+
+    .cell-goal {
+      background-color: green;
+    }
+    .cell-state {
+      background-color: darksalmon;
+    }
+    </style>
+  </head>
+  <body class="container bg-dark text-light">
+    <div class="row mt-4">
+      <div class="col-12">
+        <h2>Frozen Lake</h2>
+      </div>
+      <div class="col-12">
+        <div class="board">
+            <div id="cell-1" class="cell cell-state"></div>
+            <div id="cell-2" class="cell"></div>
+            <div id="cell-3" class="cell"></div>
+            <div id="cell-4" class="cell"></div>
+            <div id="cell-5" class="cell"></div>
+            <div id="cell-6" class="cell cell-hole"></div>
+            <div id="cell-7" class="cell"></div>
+            <div id="cell-8" class="cell cell-hole"></div>
+            <div id="cell-9" class="cell"></div>
+            <div id="cell-10" class="cell"></div>
+            <div id="cell-11" class="cell"></div>
+            <div id="cell-12" class="cell cell-hole"></div>
+            <div id="cell-13" class="cell cell-hole"></div>
+            <div id="cell-14" class="cell"></div>
+            <div id="cell-15" class="cell"></div>
+            <div id="cell-16" class="cell cell-goal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="env.js"></script>
+    <script>
+      let state = 0;
+      let game;
+      function reset() {
+        game = env.reset();
+        render();
+      }
+      function render() {
+        document.querySelectorAll('.cell').forEach((c) => c.classList.remove('cell-state'));
+        document.getElementById('cell-'+ (state+1)).classList.add('cell-state');
+      }
+      async function getQ() {
+        let response = await fetch('/q.json')
+        let data = await response.json()
+        return data
+      }
+      reset();
+
+      (async () => {
+        const q = await getQ();
+        const calculateStep = (state) => q[state].reduce((p, a, i) => {
+          console.log(+p.value, a, p.value < a);
+          return p.value < a ? { value: a, index: i } : p
+        }, { value: q[state][0], index: 0 }).index;
+        const interval = setInterval(async () => {
+          [state, reward, done] = game.step(calculateStep(state));
+          render();
+          if (done) {
+            clearInterval(interval);
+          }
+        }, 1000);
+      })();
+    </script>
+  </body>
+</html>
