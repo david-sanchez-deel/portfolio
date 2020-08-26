@@ -41,7 +41,7 @@ const Category = styled.div`
 `;
 export const Project = (project) => () => {
   return (
-    <Container target="_blank" href={project.link} className="project-container" theme={project}>
+    <Container rel="noopener noreferrer" target="_blank" href={project.link} className="project-container" theme={project}>
       <Overlay className="overlay" theme={project}></Overlay>
       <Circle className="circle" theme={project}>{project.icon}</Circle>
       <Name>{project.name}</Name>

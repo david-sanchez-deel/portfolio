@@ -11,5 +11,5 @@ export const FrozenLake = Project({
   textColorHover: '#4C5656',
   name: 'Frozen Lake',
   category: 'AI',
-  link: 'https://blesfia-frozen-lake.netlify.app/'
+  link: 'https://blesfia.com/frozen-lake'
 })
